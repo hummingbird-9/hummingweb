@@ -745,6 +745,54 @@ body.classic #ai-check {
   border: none;
   background: #fff;
 }
+  
+
+/* Enforce the modern search controls exactly; keep these scoped to the actual form. */
+body.modern #search-container #search-form #query {
+  appearance:none !important;
+  -webkit-appearance:none !important;
+  box-sizing:border-box !important;
+  min-width:0 !important;
+  background:rgba(0,0,0,.6) !important;
+  border:2px solid #90E4C1 !important;
+  color:#fff !important;
+  border-radius:12px !important;
+  padding:15px !important;
+  font-size:1.1rem !important;
+  box-shadow:none !important;
+}
+body.modern #search-container #search-form #query::placeholder {
+  color:rgba(255,255,255,.72) !important;
+  opacity:1 !important;
+}
+body.modern #search-container #search-form > button.btn {
+  appearance:none !important;
+  -webkit-appearance:none !important;
+  box-sizing:border-box !important;
+  border:2px solid #90E4C1 !important;
+  background:#000 !important;
+  color:#90E4C1 !important;
+  border-radius:8px !important;
+  padding:8px 15px !important;
+  font-weight:700 !important;
+  box-shadow:none !important;
+  backdrop-filter:none !important;
+  -webkit-backdrop-filter:none !important;
+  opacity:1 !important;
+  text-shadow:none !important;
+}
+body.modern #search-container #search-form > button.btn:hover {
+  background:#000 !important;
+  color:#90E4C1 !important;
+  border-color:#90E4C1 !important;
+  filter:brightness(1.12);
+}
+body.modern #search-container #search-form > button.btn:active {
+  background:#000 !important;
+  transform:translateY(1px);
+  filter:brightness(.92);
+}
+
   </style>
 </head>
 
