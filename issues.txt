@@ -1,0 +1,3 @@
+Issues:
+Takes way to long to request sent and waiting for response form website while other versions do not
+going to a site doesnt change the url in the window and clicking a link in a site that opens in a new tab doesn't work
