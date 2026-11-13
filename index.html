@@ -106,7 +106,8 @@
       if(targetTab) targetTab.classList.add("active");
       aiChatWindow.style.display = (mode === "ai") ? "block" : "none";
       resultsArea.style.display = (mode === "ai") ? "none" : "block";
-      if (queryInput.value) executeSearch();
+      // Changing result categories does not launch a new search.
+      // Submit again with Enter or the Search button when the query is ready.
     };
 
     // --- AI CHAT SYSTEM ---
@@ -148,7 +149,10 @@
       // Update URL parameters without reloading the page
       const currentUrlParams = new URLSearchParams(window.location.search);
       if (currentUrlParams.get('q') !== q) {
-        window.history.pushState({ query: q }, '', '?q=' + encodeURIComponent(q));
+        currentUrlParams.set('q', q);
+        const queryString = currentUrlParams.toString();
+        const nextUrl = window.location.pathname + (queryString ? '?' + queryString : '') + window.location.hash;
+        window.history.replaceState({ ...(window.history.state || {}), query: q }, '', nextUrl);
       }
 
       if (mode === "ai") { await runAiChat(q); return; }
@@ -793,10 +797,10 @@ body.classic #ai-check {
   </div>
 
   <div id="search-container">
-    <div class="search-box">
-      <input type="text" id="query" placeholder="Search the web" onkeypress="if(event.key==='Enter') doSearch()">
-      <button onclick="doSearch()" class="btn">Search</button>
-    </div>
+    <form id="search-form" class="search-box" onsubmit="event.preventDefault(); doSearch();">
+      <input type="text" id="query" placeholder="Search the web" autocomplete="off">
+      <button type="submit" class="btn">Search</button>
+    </form>
 
     <div id="tabs">
       <div class="tab active" id="tab-search" onclick="setTab('search')">All</div>
